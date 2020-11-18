@@ -1,7 +1,7 @@
 #!/bin/bash
 
-cwd=$(pwd)
-escape_cwd=$(printf "%q" "$(pwd)")
+cwd=~/Documents/main/
+escape_cwd=$(printf "%q" "~/Documents/main/")
 vim \
     -u "${cwd}/.vimrc" \
     --cmd "let g:exvim_custom_path='${cwd}'" \

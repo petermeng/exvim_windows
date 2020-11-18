@@ -32,7 +32,8 @@ set langmenu=none
 
 " use English for anaything in vim-editor.
 if WINDOWS()
-    silent exec 'language english'
+    silent exec 'language chinese'
+    set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 elseif OSX()
     silent exec 'language en_US'
 else
@@ -44,6 +45,7 @@ else
         " in linux-terminal
         silent exec 'language en_US.utf8'
     endif
+    set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 endif
 
 " try to set encoding to utf-8
@@ -53,7 +55,7 @@ if WINDOWS()
     if has('multi_byte')
         " Windows cmd.exe still uses cp850. If Windows ever moved to
         " Powershell as the primary terminal, this would be utf-8
-        set termencoding=cp850
+        set termencoding=utf-8 "cp850
         " Let Vim use utf-8 internally, because many scripts require this
         set encoding=utf-8
         setglobal fileencoding=utf-8
@@ -61,7 +63,9 @@ if WINDOWS()
         " fallback into cp1252 instead of eg. iso-8859-15.
         " Newer Windows files might contain utf-8 or utf-16 LE so we might
         " want to try them first.
-        set fileencodings=ucs-bom,utf-8,utf-16le,cp1252,iso-8859-15
+        "set fileencodings=ucs-bom,utf-8,utf-16le,cp1252,iso-8859-15,gb18030,gbk,gb2312,cp936
+        set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
+        language messages zh_CN.utf-8
     endif
 
 else
@@ -71,9 +75,100 @@ else
 endif
 scriptencoding utf-8
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 通用设置
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let mapleader = ","      " 定义<leader>键
+set nocompatible         " 设置不兼容原始vi模式
+filetype on              " 设置开启文件类型侦测
+filetype plugin on       " 设置加载对应文件类型的插件
+set noeb                 " 关闭错误的提示
+syntax enable            " 开启语法高亮功能
+syntax on                " 自动语法高亮
+set t_Co=256             " 开启256色支持
+set cmdheight=2          " 设置命令行的高度
+set showcmd              " select模式下显示选中的行数
+set ruler                " 总是显示光标位置
+set laststatus=2         " 总是显示状态栏
+set number               " 开启行号显示
+set cursorline           " 高亮显示当前行
+set whichwrap+=<,>,h,l   " 设置光标键跨行
+set ttimeoutlen=0        " 设置<ESC>键响应时间
+set virtualedit=block,onemore   " 允许光标出现在最后一个字符的后面
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 代码缩进和排版
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set autoindent           " 设置自动缩进
+set cindent              " 设置使用C/C++语言的自动缩进方式
+set cinoptions=g0,:0,N-s,(0    " 设置C/C++语言的具体缩进方式
+set smartindent          " 智能的选择对其方式
+filetype indent on       " 自适应不同语言的智能缩进
+set expandtab            " 将制表符扩展为空格
+set tabstop=4            " 设置编辑时制表符占用空格数
+set shiftwidth=4         " 设置格式化时制表符占用空格数
+set softtabstop=4        " 设置4个空格为制表符
+set smarttab             " 在行和段开始处使用制表符
+set nowrap               " 禁止折行
+set backspace=2          " 使用回车键正常处理indent,eol,start等
+set sidescroll=10        " 设置向右滚动字符数
+set nofoldenable         " 禁用折叠代码
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 代码补全
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set wildmenu             " vim自身命名行模式智能补全
+set completeopt-=preview " 补全时不显示窗口，只显示补全列表
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 搜索设置
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set hlsearch            " 高亮显示搜索结果
+set incsearch           " 开启实时搜索功能
+set ignorecase          " 搜索时大小写不敏感
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 缓存设置
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nobackup            " 设置不备份
+set noswapfile          " 禁止生成临时文件
+set autoread            " 文件在vim之外修改过，自动重新读入
+set autowrite           " 设置自动保存
+set confirm             " 在处理未保存或只读文件的时候，弹出确认
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 编码设置
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set langmenu=zh_CN.UTF-8
+set helplang=cn
+set termencoding=utf-8
+set encoding=utf8
+set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" gvim/macvim设置
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if has("gui_running")
+    "set guifont=Droid\ Sans\ Mono\ Nerd\ Font\ Complete:h18 " 设置字体
+    set guioptions-=m           " 隐藏菜单栏
+    set guioptions-=T           " 隐藏工具栏
+    set guioptions-=L           " 隐藏左侧滚动条
+    set guioptions-=r           " 隐藏右侧滚动条
+    set guioptions-=b           " 隐藏底部滚动条
+    set showtabline=0           " 隐藏Tab栏
+    set guicursor=n-v-c:ver5    " 设置光标为竖线
+endif
+
+" plug install configuration
+let g:vim_plug_mode=1
+let g:vim_vundle_mode=0
+
 "/////////////////////////////////////////////////////////////////////////////
 " Bundle steup
 "/////////////////////////////////////////////////////////////////////////////
+let g:exvim_custom_path='~/Documents/main'
+let g:exvim_project_name='batch'
+let g:exvim_folder='~/Documents/main'
 
 " vundle#begin
 filetype off " required
@@ -81,21 +176,51 @@ filetype off " required
 " set the runtime path to include Vundle
 if exists('g:exvim_custom_path')
     let g:ex_tools_path = g:exvim_custom_path.'/vimfiles/tools/'
-    exec 'set rtp+=' . fnameescape ( g:exvim_custom_path.'/vimfiles/bundle/Vundle.vim/' )
-    call vundle#rc(g:exvim_custom_path.'/vimfiles/bundle/')
+    if g:vim_vundle_mode == 1
+        exec 'set rtp+=' . fnameescape ( g:exvim_custom_path.'/vimfiles/bundle/Vundle.vim/' )
+        call vundle#rc(g:exvim_custom_path.'/vimfiles/bundle/')
+    elseif g:vim_plug_mode == 1
+        exec 'set rtp+=' . fnameescape ( g:exvim_custom_path.'/vimfiles/bundle/vim-plug/' )
+        call plug#begin(g:exvim_custom_path.'/vimfiles/bundle/')
+    endif
 else
     let g:ex_tools_path = '~/.vim/tools/'
-    set rtp+=~/.vim/bundle/Vundle.vim/
-    call vundle#rc('~/.vim/bundle/')
+    if g:vim_vundle_mode == 1
+        set rtp+=~/.vim/bundle/Vundle.vim/
+        call vundle#rc('~/.vim/bundle/')
+    elseif g:vim_plug_mode == 1
+        set rtp+=~/.vim/bundle/vim-plug/
+        call plug#begin('~/.vim/bundle/')
+    endif
 endif
 
 " load .vimrc.plugins & .vimrc.plugins.local
 if exists('g:exvim_custom_path')
-    let vimrc_plugins_path = g:exvim_custom_path.'/.vimrc.plugins'
-    let vimrc_plugins_local_path = g:exvim_custom_path.'/.vimrc.plugins.local'
+if WINDOWS()
+    if g:vim_vundle_mode == 1
+        let vimrc_plugins_path = g:exvim_custom_path.'/_vimrc.plugins'
+        let vimrc_plugins_local_path = g:exvim_custom_path.'/_vimrc.plugins.local'
+    elseif g:vim_plug_mode == 1
+        let vimrc_plugins_path = g:exvim_custom_path.'/_vimrc.plugins.vim-plug'
+        let vimrc_plugins_local_path = g:exvim_custom_path.'/_vimrc.plugins.local.vim-plug'
+    endif
 else
-    let vimrc_plugins_path = '~/.vimrc.plugins'
-    let vimrc_plugins_local_path = '~/.vimrc.plugins.local'
+    if g:vim_vundle_mode == 1
+        let vimrc_plugins_path = g:exvim_custom_path.'/.vimrc.plugins'
+        let vimrc_plugins_local_path = g:exvim_custom_path.'/.vimrc.plugins.local'
+    elseif g:vim_plug_mode == 1
+        let vimrc_plugins_path = g:exvim_custom_path.'/.vimrc.plugins.vim-plug'
+        let vimrc_plugins_local_path = g:exvim_custom_path.'/.vimrc.plugins.local.vim-plug'
+    endif
+endif
+else
+    if g:vim_vundle_mode == 1
+        let vimrc_plugins_path = '~/.vimrc.plugins'
+        let vimrc_plugins_local_path = '~/.vimrc.plugins.local'
+    elseif g:vim_plug_mode == 1
+        let vimrc_plugins_path = '~/.vimrc.plugins.vim-plug'
+        let vimrc_plugins_local_path = '~/.vimrc.plugins.local.vim-plug'
+    endif
 endif
 if filereadable(expand(vimrc_plugins_path))
     exec 'source ' . fnameescape(vimrc_plugins_path)
@@ -105,6 +230,11 @@ if filereadable(expand(vimrc_plugins_local_path))
 endif
 
 " vundle#end
+if g:vim_vundle_mode == 1
+    call vundle#end()
+elseif g:vim_plug_mode == 1
+    call plug#end()
+endif
 filetype plugin indent on " required
 syntax on " required
 
@@ -121,7 +251,32 @@ else
 endif
 colorscheme solarized
 " colorscheme exlightgray
-" colorscheme gruvbox
+
+" load .vimrc.plugins.local.config
+if exists('g:exvim_custom_path')
+if WINDOWS()
+    if g:vim_vundle_mode == 1
+        let vimrc_plugins_local_config_path = g:exvim_custom_path.'/_vimrc.plugins.local.config'
+    elseif g:vim_plug_mode == 1
+        let vimrc_plugins_local_config_path = g:exvim_custom_path.'/_vimrc.plugins.local.config.vim-plug'
+    endif
+else
+    if g:vim_vundle_mode == 1
+        let vimrc_plugins_local_config_path = g:exvim_custom_path.'/.vimrc.plugins.local.config'
+    elseif g:vim_plug_mode == 1
+        let vimrc_plugins_local_config_path = g:exvim_custom_path.'/.vimrc.plugins.local.config.vim-plug'
+    endif
+endif
+else
+    if g:vim_vundle_mode == 1
+        let vimrc_plugins_local_config_path = '~/.vimrc.plugins.local.config'
+    elseif g:vim_plug_mode == 1
+        let vimrc_plugins_local_config_path = '~/.vimrc.plugins.local.config.vim-plug'
+    endif
+endif
+if filereadable(expand(vimrc_plugins_local_config_path))
+    exec 'source ' . fnameescape(vimrc_plugins_local_config_path)
+endif
 
 "/////////////////////////////////////////////////////////////////////////////
 " General
@@ -184,6 +339,8 @@ if v:version >= 703
     set noacd " no autochchdir
 endif
 
+let g:font_set=0
+if g:font_set == 1
 " set default guifont
 if has('gui_running')
     augroup ex_gui_font
@@ -200,12 +357,16 @@ if has('gui_running')
                 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 12
             elseif getfontname( 'DejaVu Sans Mono' ) != ''
                 set guifont=DejaVu\ Sans\ Mono\ 12
+            elseif getfontname( 'Droid Sans Mono for Powerline Nerd Font Complete' ) != ''
+                set guifont=DriodSansMonoForPowerline\ NF:h12
             else
-                set guifont=Luxi\ Mono\ 12
+                "set guifont=Luxi\ Mono\ 12
             endif
+            set guifont=DroidSansMono\ Nerd\ Font:h18 " 设置字体
         elseif has('x11')
             " Also for GTK 1
             set guifont=*-lucidatypewriter-medium-r-normal-*-*-180-*-*-m-*-*
+            set guifont=Droid\ Sans\ Mono\ Nerd\ Font\ Complete:h18 " 设置字体
         elseif OSX()
             if getfontname( 'DejaVu Sans Mono for Powerline' ) != ''
                 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h15
@@ -223,7 +384,14 @@ if has('gui_running')
                 set guifont=Lucida_Console:h11:cANSI
             endif
         endif
+        set guifont=DroidSansMono\ Nerd\ Font\ Regular 18 " 设置字体
+        "set guifont=Droid\ Sans\ Mono\ Nerd\ Font\ Complete:h18 " 设置字体
     endfunction
+endif
+else
+"    set guifont=DroidSansMono\ Nerd\ Font:h20 " 设置字体
+    set guifont=DroidSansMono\ Nerd\ Font\ Regular\ 18 " 设置字体
+    "set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 12
 endif
 
 " ------------------------------------------------------------------
@@ -298,6 +466,9 @@ set cindent shiftwidth=2 " set cindent on to autoinent when editing c/c++ file, 
 set tabstop=2 " set tabstop to 4 characters
 set expandtab " set expandtab on, the tab will be change to space automaticaly
 set ve=block " in visual block mode, cursor can be positioned where there is no actual character
+set sw=2
+set ts=2
+set softtabstop=2
 
 " set Number format to null(default is octal) , when press CTRL-A on number
 " like 007, it would not become 010
@@ -495,7 +666,11 @@ nnoremap <silent> <leader>sw "_yiw:s/\(\%#\w\+\)\(\W\+\)\(\w\+\)/\3\2\1/<cr><c-o
 
 let vimrc_local_path = '~/.vimrc.local'
 if exists('g:exvim_custom_path')
+if WINDOWS()
+		let vimrc_local_path = g:exvim_custom_path.'/_vimrc.local'
+else
     let vimrc_local_path = g:exvim_custom_path.'/.vimrc.local'
+endif
 endif
 
 if filereadable(expand(vimrc_local_path))
@@ -503,3 +678,5 @@ if filereadable(expand(vimrc_local_path))
 endif
 
 " vim:ts=4:sw=4:sts=4 et fdm=marker:
+nnoremap <C-.> :bn<CR>
+nnoremap <C-,> :bp<CR>

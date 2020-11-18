@@ -54,6 +54,24 @@
 *.hpp			text
 *.hxx			text
 *.inl           text
+*.hic			text
+*.hec			text
+*.hiv			text
+*.hev			text
+*.hip			text
+*.hep			text
+*.hit			text
+*.het			text
+*.him			text
+*.hem			text
+*.hi			text
+*.he			text
+*.hc			text
+*.ht			text
+*.hp			text
+*.hm			text
+*.ho			text
+*.hv			text
 
 # c/cpp srouce
 *.c			    text

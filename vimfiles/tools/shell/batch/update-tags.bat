@@ -15,7 +15,7 @@ if exist "%DEST%\files" (
 
 rem process tags by langugage
 echo   ^|- generate %TMP%
-%CTAGS_CMD% -o"%TMP%" %OPTIONS% %FILES%
+%CTAGS_CMD% -o"%TMP%" %OPTIONS% %LANG_OPTIONS% %FILES%
 
 rem replace old file
 if exist "%TMP%" (
