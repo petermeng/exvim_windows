@@ -74,7 +74,11 @@ else
     set termencoding=utf-8
 endif
 scriptencoding utf-8
-
+if has('python')
+    set pyx=2
+elseif has('python3')
+    set pyx=3
+endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 通用设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
