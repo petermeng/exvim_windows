@@ -133,8 +133,8 @@ set undodir=~/.undo_history/
 endif
 set undofile
 " 保存快捷键
-" map <leader>ss :mksession! my.vim<cr> :wviminfo! my.viminfo<cr>
+map <leader>ass :mksession! my.vim<cr> :wviminfo! my.viminfo<cr>
 " 恢复快捷键
-map <leader>rs :source my.vim<cr> :rviminfo my.viminfo<cr>
+map <leader>ars :source my.vim<cr> :rviminfo my.viminfo<cr>
 
 nnoremap <unique> <silent> <F2> :EXProjectToggle<cr>

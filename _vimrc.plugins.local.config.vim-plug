@@ -64,7 +64,7 @@ else
   let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 endif
 let mapleader = ","
-map <leader>ne :NERDTreeToggle<CR>
+" map <leader>ne :NERDTreeToggle<CR>
 nmap <leader>tb :TagbarToggle<CR>
 nmap <leader>mmbe :MiniBufExplorer<CR>
 nmap <leader>mmbc :CMiniBufExplorer<CR>
@@ -1724,3 +1724,4 @@ nnoremap <leader><leader>r :ReplaceTo<space>
 set background=dark
 let g:onedark_termcolors=256
 colorscheme onedark
+let g:snipMate = { 'snippet_version' : 1 }

@@ -74,11 +74,13 @@ else
     set termencoding=utf-8
 endif
 scriptencoding utf-8
+
 if has('python')
     set pyx=2
 elseif has('python3')
     set pyx=3
 endif
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 通用设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -693,3 +695,5 @@ endif
 nnoremap <silent> <F12> :!start "D:\Program Files (x86)\Source Insight 3\Insight3.exe" -i +<C-R>=expand(line("."))<CR> %<CR>
 autocmd FileType makefile set noexpandtab
 "set guifont=DroidSansMono\ NF:h18      " 设置字体
+nnoremap <C-.> :bn<CR>
+nnoremap <C-,> :bp<CR>

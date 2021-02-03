@@ -23,7 +23,7 @@ Plug 'jlanzarotta/bufexplorer'
 Plug 'mattn/calendar-vim'
 Plug 'vim-scripts/Colour-Sampler-Pack'
 Plug 'godlygeek/csapprox'
-Plug 'Raimondi/delimitMate'
+" Plug 'Raimondi/delimitMate'
 Plug 'will133/vim-dirdiff', {'as': 'dirdiff'}
 "Plug 'jbarbero/doctabs.vim', {'as': 'doctabs'}
 Plug 'vim-scripts/DrawIt'
@@ -103,7 +103,8 @@ Plug 'junegunn/vim-easy-align'
 Plug 'tacahiroy/ctrlp-funky'
 Plug 'mhinz/vim-rfc'
 Plug 'vim-scripts/rfc-syntax'
-Plug 'python-mode/python-mode'
+"Plug 'python-mode/python-mode'
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'tao12345666333/vim-vue'
 " 更高效的行内移动, f/F/t/T, 才触发
 " quickscope
@@ -153,3 +154,4 @@ Plug 'sgur/vim-textobj-parameter'
 Plug 'chxuan/change-colorscheme'
 Plug 'joshdick/onedark.vim'
 Plug 'petermeng/SwissCalc'
+Plug 'WolfgangMehner/git-support'
