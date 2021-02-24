@@ -233,6 +233,10 @@ if has("persistent_undo")
     set undodir=~/.undodir/
     set undofile
 endif
+map L :UndotreeToggle<CR>
+let g:undotree_DiffAutoOpen = 1
+let g:undotree_SetFocusWhenToggle = 1
+let g:undotree_ShortIndicators = 1
 
 "auto-pairs configuration
 let g:AutoPairsShortcutToggle='<C-A-p>'
@@ -1733,3 +1737,12 @@ let g:session_autosave = 'no'
 let g:session_directory = "~/.session_history/"
 nnoremap <leader>se :SaveSession<cr>
 nnoremap <leader>os :OpenSession<cr>
+
+" === vim-better-whitespace
+let g:better_whitespace_enable=0
+
+" wildfire
+" This selects the next closest text object
+map <SPACE> <Plug>(wildfire-fuel)
+" This selects the previous closest text object.
+vmap <C-SPACE> <Plug>(wildfire-water)
