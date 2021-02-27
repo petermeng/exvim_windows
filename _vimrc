@@ -697,3 +697,6 @@ autocmd FileType makefile set noexpandtab
 "set guifont=DroidSansMono\ NF:h18      " 设置字体
 nnoremap <C-.> :bn<CR>
 nnoremap <C-,> :bp<CR>
+let &t_SI = "\<ESC>]50;CursorShape=1\x7"
+let &t_SR = "\<ESC>]50;CursorShape=2\x7"
+let &t_EI = "\<ESC>]50;CursorShape=0\x7"
