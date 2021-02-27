@@ -32,8 +32,13 @@
 ::
 ::978f952a14a936cc963da21a135fa983
 @echo off
-set PATH=%PATH%;C:\VIM_HOME\windows;C:\VIM_HOME\windows\curl-7.75.0-win64-mingw\bin;C:\VIM_HOME\windows\cmake-3.17.2-win64-x64\bin;
+if defined VIMHOME (
+set cwd=%VIMHOME%
+set PATH=%PATH%;%VIMHOME%\windows;%VIMHOME%\windows\curl-7.75.0-win64-mingw\bin;%VIMHOME%\windows\cmake-3.17.2-win64-x64\bin;
+) else (
 set cwd=C:\VIM_HOME
+set PATH=%PATH%;C:\VIM_HOME\windows;C:\VIM_HOME\windows\curl-7.75.0-win64-mingw\bin;C:\VIM_HOME\windows\cmake-3.17.2-win64-x64\bin;
+)
 gvim ^
     -u C:\VIM_HOME\_vimrc ^
     --cmd "let g:exvim_custom_path='C:\VIM_HOME'" ^

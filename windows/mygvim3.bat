@@ -1,6 +1,10 @@
 @echo on
-set cwd=D:\exVim_1
-echo %cmd%
+if defined VIMHOME (
+set cwd=%VIMHOME%
+) else (
+set cwd=G:\project\tools\exvim_windows
+)
+echo %cwd%
 gvim ^
     -u %cwd%\_vimrc ^
     --cmd "let g:exvim_custom_path='%cwd%'" ^
