@@ -40,5 +40,5 @@ gvim ^
     -u C:\VIM_HOME\_vimrc ^
     --cmd "let g:exvim_custom_path='C:\VIM_HOME'" ^
     --cmd "set runtimepath=C:\VIM_HOME\vimfiles,$VIMRUNTIME,C:\VIM_HOME\vimfiles\after" ^
-    %1
+    %*
 @echo on
