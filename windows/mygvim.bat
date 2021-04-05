@@ -33,6 +33,7 @@
 ::978f952a14a936cc963da21a135fa983
 @echo off
 set cwd=G:\project\tools\exvim_windows
+set HOME=G:\project\tools\exvim_windows
 gvim ^
     -u G:\project\tools\exvim_windows\_vimrc ^
     --cmd "let g:exvim_custom_path='G:\project\tools\exvim_windows'" ^
