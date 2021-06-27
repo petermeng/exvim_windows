@@ -1781,7 +1781,7 @@ command! BD call fzf#run(fzf#wrap({
 
 noremap <c-d> :BD<CR>
 
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.8 } }
+let g:fzf_layout = { 'window': { 'width': 1.0, 'height': 1.0 } }
 "=================================="
 "               FZF                "
 "=================================="
@@ -1790,7 +1790,7 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.8 } }
                 inoremap <C-f> <Esc><Esc>:BLines!<CR>
                 map <C-g> <Esc><Esc>:BCommits!<CR>
         " ~~~~~ Bat Preview Theme
-                let $BAT_THEME = 'Solarized (dark)'
+                "let $BAT_THEME = 'Solarized (dark)'
         " ~~~~~ Let FZF find hidden files and folders
                 "let $FZF_DEFAULT_COMMAND='find . -not -path "*/\.git*" -type f -print'
 
